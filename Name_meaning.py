@@ -46,4 +46,4 @@ for i in range(0,5):
         output_file.write(f"Name: {random_name}, Meaning: {name_meaning}\n")
         os.system("git add output.txt")
         os.system(f'git commit --amend --date="2023-0{rm}-{rd}" --no-edit')
-os.system('git push origin 
+os.system('git push -u origin master')
