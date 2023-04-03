@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup as bs
 import random
+import os
 
 # Function to check if a string is alpha
 def is_alpha(s):
@@ -29,10 +30,11 @@ except FileNotFoundError:
     print("The file 'names.txt' does not exist.")
     exit(1)
 
-loop = True
-while loop:
+for i in range(0,5):
     # Select a random name from the list of names
     random_name = random.choice(names)
+    rd = random.randint(1,30) #random date
+    rm = random.randint(2,8)  #random month
 
     # Fetch the meaning of the random name
     name_meaning = fetch_name_meaning(random_name)
@@ -42,8 +44,6 @@ while loop:
     # Write the name and its meaning to "output.txt"
     with open("output.txt", "a") as output_file:
         output_file.write(f"Name: {random_name}, Meaning: {name_meaning}\n")
-
-    ch = str(input("\nDo you want to continue with another random name? (y/n): ")).lower()
-    if ch != 'y':
-        loop = False
-        print("Exiting")
+        os.system("git add .")
+        os.system(f'git commit --amend --date="2023-0{rm}-{rd}" --no-edit')
+    os.system('git push -u origin master')
