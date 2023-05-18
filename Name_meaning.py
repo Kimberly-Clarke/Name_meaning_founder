@@ -1,34 +1,49 @@
 import requests
 from bs4 import BeautifulSoup as bs
+import random
 
-print("Welcome to the program!\n")
-loop = True
-while loop:
-    name = str(input("Enter the name of person to find its meaning :"))
-    if not name.isalpha():
-        print("Enter only alpha value!")
-        continue
-    print("fetching data")
+# Function to check if a string is alpha
+def is_alpha(s):
+    return s.isalpha()
+
+# Function to fetch the meaning of a name
+def fetch_name_meaning(name):
     url = "https://www.thenamemeaning.com/"
-    url = url+name+"/"
+    url = url + name + "/"
     r = requests.get(url)
     data = r.content
-    soup = bs(data,"lxml")
+    soup = bs(data, "lxml")
     try:
-        out = "The meaning of the name {} is".format(name)
-        data = soup.strong.next_sibling
-        print(out+data)
-        ch = str(input("\nDo you wanna enter again?(y/n)")).lower()
-        if ch == 'y':
-            continue
-        else:
-            loop = False
-            print("Exiting")
+        meaning = soup.strong.next_sibling.strip()
+        return meaning
     except:
-        print("Sorry can't not found the name specified")
-        ch = str(input("\nDo you wanna enter again?(y/n)")).lower()
-        if ch == 'y':
-            continue
-        else:
-            loop = False
-            print("Exiting")
+        return "Not found"
+
+print("Welcome to the program!\n")
+
+try:
+    # Read names from the "names.txt" file
+    with open("names.txt", "r") as name_file:
+        names = [line.strip() for line in name_file.readlines() if is_alpha(line.strip())]
+except FileNotFoundError:
+    print("The file 'names.txt' does not exist.")
+    exit(1)
+
+loop = True
+while loop:
+    # Select a random name from the list of names
+    random_name = random.choice(names)
+
+    # Fetch the meaning of the random name
+    name_meaning = fetch_name_meaning(random_name)
+
+    print(f"The meaning of the name '{random_name}' is: {name_meaning}")
+
+    # Write the name and its meaning to "output.txt"
+    with open("output.txt", "a") as output_file:
+        output_file.write(f"Name: {random_name}, Meaning: {name_meaning}\n")
+
+    ch = str(input("\nDo you want to continue with another random name? (y/n): ")).lower()
+    if ch != 'y':
+        loop = False
+        print("Exiting")
