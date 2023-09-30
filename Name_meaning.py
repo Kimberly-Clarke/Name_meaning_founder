@@ -30,7 +30,7 @@ except FileNotFoundError:
     print("The file 'names.txt' does not exist.")
     exit(1)
 
-for i in range(0,100):
+for i in range(0,10):
     # Select a random name from the list of names
     random_name = random.choice(names)
     rd = random.randint(1,30) #random date
