@@ -2,7 +2,6 @@ import requests
 from bs4 import BeautifulSoup as bs
 import random
 import os
-import time
 
 # Function to check if a string is alpha
 def is_alpha(s):
@@ -47,5 +46,4 @@ for i in range(0,5):
         output_file.write(f"Name: {random_name}, Meaning: {name_meaning}\n")
         os.system("git add output.txt")
         os.system(f'git commit --amend --date="2023-0{rm}-{rd}" --no-edit')
-os.system('git push origin master')
-time.sleep(4949)
+os.system('git push origin 
