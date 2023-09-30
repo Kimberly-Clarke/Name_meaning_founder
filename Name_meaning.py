@@ -31,6 +31,10 @@ except FileNotFoundError:
     print("The file 'names.txt' does not exist.")
     exit(1)
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 878ed7d5d4c63c69fd34e06c6a2683bdef3c4bab
 for i in range(0,5):
     # Select a random name from the list of names
     random_name = random.choice(names)
