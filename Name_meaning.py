@@ -31,7 +31,7 @@ except FileNotFoundError:
     print("The file 'names.txt' does not exist.")
     exit(1)
 
-for i in range(0,3):
+for i in range(0,5):
     # Select a random name from the list of names
     random_name = random.choice(names)
     rd = random.randint(1,30) #random date
@@ -47,5 +47,5 @@ for i in range(0,3):
         output_file.write(f"Name: {random_name}, Meaning: {name_meaning}\n")
         os.system("git add .")
         os.system(f'git commit --amend --date="2023-0{rm}-{rd}" --no-edit')
-        os.system('git push origin master')
+os.system('git push origin master')
 time.sleep(4949)
