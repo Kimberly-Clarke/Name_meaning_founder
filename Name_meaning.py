@@ -44,6 +44,7 @@ for i in range(0,10):
     # Write the name and its meaning to "output.txt"
     with open("output.txt", "w") as output_file:
         output_file.write(f"Name: {random_name}, Meaning: {name_meaning}\n")
+        os.system("git pull origin master")
         os.system("git add .")
         os.system(f'git commit --amend --date="2023-0{rm}-{rd}" --no-edit')
 os.system('git push -u origin master')
