@@ -43,7 +43,7 @@ for i in range(0,5):
     print(f"The meaning of the name '{random_name}' is: {name_meaning}")
 
     # Write the name and its meaning to "output.txt"
-    with open("output.txt", "a") as output_file:
+    with open("output.txt", "w") as output_file:
         output_file.write(f"Name: {random_name}, Meaning: {name_meaning}\n")
         os.system("git add .")
         os.system(f'git commit --amend --date="2023-0{rm}-{rd}" --no-edit')
